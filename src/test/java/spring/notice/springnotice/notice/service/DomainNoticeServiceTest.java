@@ -1,8 +1,6 @@
 package spring.notice.springnotice.notice.service;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.NullSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +9,7 @@ import spring.notice.springnotice.notice.NoticeVo;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
@@ -31,7 +29,20 @@ class DomainNoticeServiceTest {
     }
 
     @Test
-    void 게시물_조회() {
+    void 게시글_조회() {
+        NoticeVo noticeVo = NoticeVo.createNoticeVo("title", "content");
+
+        noticeMapper.create(noticeVo);
+
+        NoticeVo findNotice = noticeService.getNotice(1);
+
+        assertThat(findNotice.getId()).isNotNull();
+        assertThat(findNotice.getTitle()).isEqualTo("title");
+        assertThat(findNotice.getContent()).isEqualTo("content");
+    }
+
+    @Test
+    void 게시물_목록_조회() {
         int result = noticeService.create("제목", "콘텐트");
 
         List<NoticeVo> noticeList = noticeService.getNotices();

@@ -30,6 +30,11 @@ public class DomainNoticeService implements NoticeService {
         return noticeMapper.update(notice);
     }
 
+    @Override
+    public NoticeVo getNotice(int noticeId) {
+        return noticeMapper.getNotice(noticeId);
+    }
+
 
     @Override
     public List<NoticeVo> getNotices() {
