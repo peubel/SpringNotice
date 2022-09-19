@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.notice.springnotice.notice.NoticeMapper">
+
+    <insert id="create" parameterType="spring.notice.springnotice.notice.NoticeVo">
+        INSERT INTO Notice(id, title, content)
+        VALUES (${id},
+                #{title},
+                #{content})
+    </insert>
+
+    <update id="update">
+        UPDATE Notice
+        SET title=#{title},
+            content=#{content}
+    </update>
+
+    <select id="getNotices" resultType="spring.notice.springnotice.notice.NoticeVo">
+        SELECT *
+        FROM Notice
+    </select>
+
+    <select id="getNotice" parameterType="int" resultType="spring.notice.springnotice.notice.NoticeVo">
+        SELECT *
+        FROM Notice
+        Where id=#{noticeId}
+    </select>
+
+</mapper>
