@@ -10,5 +10,7 @@ public interface NoticeService {
 
     int update(int noticeId, String title,String content);
 
+    NoticeVo getNotice(int noticeId);
+
     List<NoticeVo> getNotices();
 }
